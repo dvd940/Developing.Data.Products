@@ -68,31 +68,24 @@ my.test <- train.data[-train.split,]
 
 source("model.R")
 
-#  Test model for accuracy
-my.prediction <- predict(myFit, my.test, "prob")
-cf <- confusionMatrix(my.prediction, my.test$Fate)
-my.accuracy <- round(cf$overall["Accuracy"], 3)  # LDA Accuracy
-my.out.of.sample.error <- as.numeric(1 - my.accuracy)  # LDA Out Of Sample error
-my.accuracy
-my.out.of.sample.error
 
 
-## Test
-C <- "First"
-S <- "female"
-A <- 24
-E <- "S"
-Tle <- "Mrs"
-Fam <- "Yes"
-
-
-my.test.data <- data.frame(Class = factor(C), Sex = factor(S), Age = A, 
-                           Embarked = factor(E), Title = factor(Tle), Family = factor(Fam))
-
-
-my.prediction <- predict(myFit, my.test.data, "prob")
-my.prediction
-
+# ## Test the model
+# C <- "First"
+# S <- "female"
+# A <- 24
+# E <- "S"
+# Tle <- "Mrs"
+# Fam <- "Yes"
+# 
+# 
+# my.test.data <- data.frame(Class = factor(C), Sex = factor(S), Age = A, 
+#                            Embarked = factor(E), Title = factor(Tle), Family = factor(Fam))
+# 
+# 
+# my.prediction <- predict(myFit, my.test.data, "prob")
+# my.prediction
+# 
 
 
 
