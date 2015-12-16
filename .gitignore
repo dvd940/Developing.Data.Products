@@ -7,6 +7,4 @@ Practical.Machine.Learning_cache
 req.html
 answers
 obs/
-project.meta/
-sandbox/
-sandbox.R
+rsconnect/
