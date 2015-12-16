@@ -2,6 +2,8 @@ library(shiny)
 library(plyr)
 library(dplyr)
 library(ggplot2)
+library(caret)
+library(randomForest)
 
 
 # Read in the full titanic data set
