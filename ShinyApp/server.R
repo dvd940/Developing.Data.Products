@@ -14,7 +14,7 @@ titanic.data <-
 titanic.data$survived <- NULL
 
 # Read in the prediction model
-titanic.model <- readRDS("titanic.model.rds")
+titanic.model <- readRDS("model/titanic.model.rds")
 
 
 shinyServer(function(input, output) {
