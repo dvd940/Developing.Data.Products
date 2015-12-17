@@ -6,6 +6,10 @@ shinyUI(
   navbarPage(
     theme = "bootstrap3.min.css",
     "Exploring The Titanic Dataset",
+    tabPanel(p(icon("star"), "Welcome"),
+             h2("Welcome to Exploring The Titanic Dataset"),
+             includeMarkdown("welcome.md")
+             ),
     tabPanel(p(icon("bar-chart"),"Explore"),
              sidebarLayout(
                sidebarPanel(
