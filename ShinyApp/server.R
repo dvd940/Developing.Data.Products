@@ -37,23 +37,19 @@ shinyServer(function(input, output) {
   
   
   # Explore
-  output$plot1 <- renderPlot({
-    if (is.null(input$sexInput)) { 
-      return(NULL)
-    }
-    pl <- ggplot(filtered(), aes(factor(Fate), fill = sex))
-    pl <- pl + geom_bar(width = .5)
-    pl <- pl + ylim(0,1000)
-    pl
+  output$plot1 <- renderChart2({
+    dataT <- data.frame(table(filtered()$Fate, filtered()$sex))
+    names(dataT) <- c("Fate", "Sex", "Freq")
+    r1 <- nPlot(Freq ~ Fate, group = "Sex", data = dataT, type = 'multiBarChart')
+    return(r1)
   })
   
-  output$plot2 <- renderPlot({
-    pl <- ggplot(filtered(), aes(factor(sex), fill = Fate))
-    pl <- pl + geom_bar(width = .5)
-    pl <- pl + ylim(0,1000)
-    pl
-    
-    
+  
+  output$plot2 <- renderChart2({
+    dataT <- data.frame(table(filtered()$Fate, filtered()$pclass))
+    names(dataT) <- c("Fate", "Class", "Freq")
+    r2 <- nPlot(Freq ~ Fate, group = "Class", data = dataT, type = 'multiBarChart')
+    return(r2)
   })
   
   ## Predict

@@ -1,4 +1,6 @@
 library(shiny)
+library(rCharts)
+options(RCHART_LIB = 'nvd3')
 
 shinyUI(
   navbarPage(
@@ -7,6 +9,7 @@ shinyUI(
     tabPanel(p(icon("bar-chart"),"Explore"),
              sidebarLayout(
                sidebarPanel(
+                 h4("Select Attributes To Change the Chart Parameters"),
                  checkboxGroupInput(
                    "sexInput", "Sex",
                    c("Male" = "male", "Female" =
@@ -21,10 +24,15 @@ shinyUI(
                      "Third" = 3
                    ),
                    selected = c(1,2,3)
-                 )
+                 ),
+                 p("See About | Help for more information on using this App.")
                ),
-               mainPanel(plotOutput("plot1"),
-                         plotOutput("plot2"))
+               mainPanel(
+                 h4("Passenger Outcome by Sex", align = "center"),
+                 showOutput("plot1", "nvd3"),
+                 h4("Passenger Outcome by Class", align = "center"),
+                 showOutput("plot2", "nvd3"))
+               
              )),
     
     tabPanel(p(icon("cog"),"Predict"),
@@ -74,7 +82,8 @@ shinyUI(
                      "Cherbourg" = "C",
                      "Queenstown " = "Q"
                    )
-                 )
+                 ),
+                 p("See About | Help for more information on using this App.")
                ),
                mainPanel(
                  h2("Would you have survived the Titanic disaster?"),
