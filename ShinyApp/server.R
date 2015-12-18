@@ -14,6 +14,7 @@ titanic.data <-
 titanic.data <-
   mutate(titanic.data, Fate = ifelse(survived == 1, "Survived", "Perished"))
 titanic.data$survived <- NULL
+titanic.data<- mutate(titanic.data, Age = age%/%1)
 
 # Read in the prediction model
 titanic.model <- readRDS("model/titanic.model.rds")
@@ -36,7 +37,8 @@ shinyServer(function(input, output) {
   })
   
   
-  # Explore
+  #################### Explore ####################
+  
   output$plot1 <- renderChart2({
     dataT <- data.frame(table(filtered()$Fate, filtered()$sex))
     names(dataT) <- c("Fate", "Sex", "Freq")
@@ -52,7 +54,16 @@ shinyServer(function(input, output) {
     return(r2)
   })
   
-  ## Predict
+  output$plot3 <- renderChart2({
+    histg <- hist(filtered()$Age, breaks = 10, plot = FALSE)
+    print(histg)
+    ages <- data.frame("Ages" = histg$breaks[-1], "Freq" = histg$counts)
+    Histogram1 <- nPlot(x = "Ages", y = "Freq", data=ages,type='discreteBarChart')
+    Histogram1
+  })
+  
+  
+  #################### Predict ####################
   
   prediction.text <- reactive({
     input.data <- data.frame(

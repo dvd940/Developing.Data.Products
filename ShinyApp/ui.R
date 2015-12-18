@@ -35,7 +35,9 @@ shinyUI(
                  h4("Passenger Outcome by Sex", align = "center"),
                  showOutput("plot1", "nvd3"),
                  h4("Passenger Outcome by Class", align = "center"),
-                 showOutput("plot2", "nvd3"))
+                 showOutput("plot2", "nvd3"),
+                 h4("Passenger Ages Histogram", align = "center"),
+                 showOutput("plot3", "nvd3"))
                
              )),
     
@@ -113,5 +115,5 @@ shinyUI(
       tabPanel("Help",
                mainPanel(includeMarkdown("help.md")))
     )
-  )
+    , class = "span12")
 )
